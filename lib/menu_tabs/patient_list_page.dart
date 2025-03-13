@@ -67,28 +67,29 @@ class _PatientListPageState extends State<PatientListPage> {
                             DataColumn(label: Text("Email",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Role",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Actions",style: TextStyle(fontWeight: FontWeight.bold),)),
-                          ], rows: controller.patientList.asMap().entries.map((entry) {
-                          int index = entry.key + 1;
-                          var doctor = entry.value;
-                          return DataRow(cells: [
-                            DataCell(Text(index.toString())),
-                            DataCell(Text(doctor.id)),
-                            DataCell(Text("${doctor.firstName} ${doctor.lastName}" )),
-                            DataCell(Text(doctor.isActive ? "Active" : "Not Active")),
-                            DataCell(Text(doctor.weight)),
-                            DataCell(Text(doctor.phoneNumber)),
-                            DataCell(Text(doctor.email)),
-                            DataCell(Text(doctor.role.toString())),
-                            DataCell(Row(
-                              children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  child: const Text("View", style: TextStyle(color: Colors.blue)),
-                                ),
-                              ],
-                            )),
-                          ]);
-                        }).toList(),
+                          ],
+                          rows: controller.patientList.asMap().entries.map((entry) {
+                            int index = entry.key + 1;
+                            var doctor = entry.value;
+                            return DataRow(cells: [
+                              DataCell(Text(index.toString())),
+                              DataCell(Text(doctor.id)),
+                              DataCell(Text("${doctor.firstName} ${doctor.lastName}" )),
+                              DataCell(Text(doctor.isActive ? "Active" : "Not Active")),
+                              DataCell(Text(doctor.weight)),
+                              DataCell(Text(doctor.phoneNumber)),
+                              DataCell(Text(doctor.email)),
+                              DataCell(Text(doctor.role.toString())),
+                              DataCell(Row(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: const Text("View", style: TextStyle(color: Colors.blue)),
+                                  ),
+                                ],
+                              )),
+                            ]);
+                          }).toList(),
                         ),
                       ),
                     ),

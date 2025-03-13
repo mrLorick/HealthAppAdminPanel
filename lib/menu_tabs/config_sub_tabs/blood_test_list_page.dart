@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
+import '../../controllers/blood_test_controller.dart';
 import '../../controllers/medicines_controller.dart';
 
-class MedicinesListPage extends StatefulWidget {
-  const MedicinesListPage({super.key});
+class BloodTestListPage extends StatefulWidget {
+  const BloodTestListPage({super.key});
 
   @override
-  State<MedicinesListPage> createState() => _MedicinesListPageState();
+  State<BloodTestListPage> createState() => _BloodTestListPageState();
 }
 
-class _MedicinesListPageState extends State<MedicinesListPage> {
-  final MedicinesController controller = Get.put(MedicinesController());
+class _BloodTestListPageState extends State<BloodTestListPage> {
+  final BloodTestController controller = Get.put(BloodTestController());
 
   @override
   void initState() {
-    controller.getAllMedicinesList();
+    controller.getAllBloodTestList();
     super.initState();
   }
 
@@ -53,7 +54,7 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
                     ),
                     child: controller.isLoading.value
                         ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text("Add Medicine", style: TextStyle(fontSize: 14,color: Colors.white)),
+                        : const Text("Add Blood Test", style: TextStyle(fontSize: 14,color: Colors.white)),
                   ),
                 )
               ],
@@ -62,8 +63,7 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
             Expanded(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  double totalWidth = constraints
-                      .maxWidth; // Get available width
+                  double totalWidth = constraints.maxWidth;
                   double column1Width = totalWidth * 0.10; // 10% width
                   double column2Width = totalWidth * 0.20; // 20% width
                   double column3Width = totalWidth * 0.15; // 25% width
@@ -98,14 +98,14 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Obx(() => Column(
-                              children: controller.medicinesList.asMap().entries.map((entry) {
+                              children: controller.bloodTestList.asMap().entries.map((entry) {
                                 int index = entry.key + 1;
                                 var doctor = entry.value;
                                 return Row(
                                   children: [
                                     _buildTableCell(index.toString(), column1Width),
                                     _buildTableCell(doctor.id, column2Width),
-                                    _buildTableCell(doctor.medicineId.toString(), column3Width),
+                                    _buildTableCell(doctor.bloodId.toString(), column3Width),
                                     _buildTableCell(doctor.name, column4Width),
                                     _buildTableCell(doctor.isActive ? "Active" : "Not Active", column5Width),
                                     _buildTableCell("View", column6Width, isButton: true),

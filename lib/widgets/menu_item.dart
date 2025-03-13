@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_panel/controllers/login_controller.dart';
+import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 import '../controllers/sidebar_controller.dart';
 
@@ -20,6 +22,7 @@ Widget menuItem(
       Map<String, int>? subItemIndexes,
     }) {
   final SidebarController controller = Get.put(SidebarController());
+
   RxBool isHovered = false.obs;
   RxBool isExpanded = false.obs; // For expanding sub-items
 
@@ -108,6 +111,62 @@ Widget menuItem(
             ),
           )),
 
+      ],
+    ),
+  );
+}
+
+
+Widget menuLogoutItem(
+    IconData icon,
+    String title,
+    int index,
+    RxInt selectedPage, {
+      List<String>? subItems,
+      Map<String, int>? subItemIndexes,
+    }) {
+  final LoginController controller = Get.put(LoginController());
+  RxBool isHovered = false.obs;
+
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Obx(() => MouseRegion(
+          onEnter: (_) => isHovered.value = true,
+          onExit: (_) => isHovered.value = false,
+          child: GestureDetector(
+            onTap: () {
+              controller.clearAndLogout();
+            },
+            child: Container(
+              width: double.infinity, // Ensure full width
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                color: selectedPage.value == index || isHovered.value
+                    ? Colors.blueGrey.shade700
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(icon, color: Colors.white, size: 20),
+                  xWidth(10),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        )),
       ],
     ),
   );

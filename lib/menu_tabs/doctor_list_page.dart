@@ -57,8 +57,8 @@ class _DoctorListPageState extends State<DoctorListPage> {
                           columnSpacing: 20, // Adjust spacing for better layout
                           headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade200),
                           columns: const [
-                            DataColumn(label: Text("Sr No.",style: TextStyle(fontWeight: FontWeight.bold),)),
-                            DataColumn(label: Text("Docotr ID",style: TextStyle(fontWeight: FontWeight.bold),)),
+                            DataColumn(label: Text("Id",style: TextStyle(fontWeight: FontWeight.bold),)),
+                            DataColumn(label: Text("Doctor ID",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Name",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Status",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Clinic",style: TextStyle(fontWeight: FontWeight.bold),)),

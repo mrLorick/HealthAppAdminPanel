@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_panel/pages/login_page.dart';
 
 import '../locale_storage/shared_preference_helper.dart';
 import '../pages/admin_main_page.dart';
@@ -39,6 +40,12 @@ class LoginController extends GetxController {
         fcmToken: ""
     );
 
+  }
+
+
+  void  clearAndLogout(){
+    storage.clear();
+    Get.off(() => AdminLoginPage());
   }
 
 

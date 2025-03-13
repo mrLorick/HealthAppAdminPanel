@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 import '../controllers/sidebar_controller.dart';
+import '../menu_tabs/config_sub_tabs/blood_test_list_page.dart';
 import '../menu_tabs/config_sub_tabs/medicines_list_page.dart';
 import '../menu_tabs/dashboard_page.dart';
 import '../menu_tabs/doctor_list_page.dart';
@@ -22,8 +24,10 @@ class AdminPanel extends StatelessWidget {
 
 
     const MedicinesListPage(),
-    DoctorListPage(),     // 31
+    BloodTestListPage(),     // 31
     DoctorListPage(),      // 32
+    DoctorListPage(),
+    // 33
     DoctorListPage(),     // 33
   ];
 
@@ -37,6 +41,8 @@ class AdminPanel extends StatelessWidget {
     "Blood Test",
     "Symptoms",
     "Diagnosis",
+
+    "Settings",
   ];
 
 
@@ -92,13 +98,16 @@ class AdminPanel extends StatelessWidget {
                     Expanded(
                       child: ListView(
                         children: [
-                          menuItem(Icons.dashboard, "Dashboard", 0, selectedPage),
-                          menuItem(Icons.person, "Patients", 1, selectedPage),
-                          menuItem(Icons.medical_services, "Doctors", 2, selectedPage),
-                          menuItem(Icons.medical_services, "Config", 3, selectedPage,subItems: ["Medicines","Blood Test","Symptoms","Diagnosis"],subItemIndexes: subItemIndexes),
+                          menuItem(Icons.dashboard_customize_outlined, "Dashboard", 0, selectedPage),
+                          menuItem(Icons.person_outline_outlined, "Patients", 1, selectedPage),
+                          menuItem(Icons.person_pin_outlined, "Doctors", 2, selectedPage),
+                          menuItem(Icons.file_copy_outlined, "Config", 3, selectedPage,subItems: ["Medicines","Blood Test","Symptoms","Diagnosis"],subItemIndexes: subItemIndexes),
                         ],
                       ),
                     ),
+                    yHeight(100),
+                    menuItem(Icons.settings_outlined, "Setting", 8, selectedPage),
+                    menuLogoutItem(Icons.logout_outlined, "Logout", 5, 100.obs),
                   ],
                 ),
               )),
@@ -131,10 +140,8 @@ class AdminPanel extends StatelessWidget {
                             height: 40,
                             width: 40,
                             child: ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(50)),
-                              child: Image.asset(
-                                  "assets/images/doctor_place_holder_male.jpeg"),
+                              borderRadius: const BorderRadius.all(Radius.circular(50)),
+                              child: Image.asset("assets/images/doctor_place_holder_male.jpeg"),
                             ),
                           ),
                         ],
