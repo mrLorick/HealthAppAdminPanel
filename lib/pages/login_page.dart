@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -15,7 +16,7 @@ class AdminLoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade900,
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.4,
           child: Card(
             elevation: 8,
@@ -27,13 +28,12 @@ class AdminLoginPage extends StatelessWidget {
                 children: [
                   // Logo
                   Image.asset('assets/images/app_logo.png', height: 100),
-                  const SizedBox(height: 10),
+                  yHeight(10),
                   const Text(
                     "Admin Login",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 20),
-
+                  yHeight(20),
                   // Email Field
                   TextField(
                     controller: controller.emailController,
@@ -43,8 +43,7 @@ class AdminLoginPage extends StatelessWidget {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
-                  const SizedBox(height: 15),
-
+                  yHeight(15),
                   // Password Field
                   TextField(
                     controller: controller.passwordController,
@@ -55,8 +54,7 @@ class AdminLoginPage extends StatelessWidget {
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
-                  const SizedBox(height: 20),
-
+                  yHeight(20),
                   // Login Button
                   Obx(() => ElevatedButton(
                     onPressed: controller.isLoading.value ? null : controller.login,

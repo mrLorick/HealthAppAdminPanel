@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:health_app_admin_pannel/controllers/doctor_controller.dart';
-import 'package:health_app_admin_pannel/utils/app_helpers.dart';
+import 'package:health_app_admin_panel/controllers/doctor_controller.dart';
+import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 class DoctorListPage extends StatefulWidget {
   const DoctorListPage({super.key});
@@ -57,7 +57,8 @@ class _DoctorListPageState extends State<DoctorListPage> {
                           columnSpacing: 20, // Adjust spacing for better layout
                           headingRowColor: MaterialStateProperty.all(Colors.blueGrey.shade200),
                           columns: const [
-                            DataColumn(label: Text("ID",style: TextStyle(fontWeight: FontWeight.bold),)),
+                            DataColumn(label: Text("Sr No.",style: TextStyle(fontWeight: FontWeight.bold),)),
+                            DataColumn(label: Text("Docotr ID",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Name",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Status",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Clinic",style: TextStyle(fontWeight: FontWeight.bold),)),
@@ -66,9 +67,12 @@ class _DoctorListPageState extends State<DoctorListPage> {
                             DataColumn(label: Text("Approved",style: TextStyle(fontWeight: FontWeight.bold),)),
                             DataColumn(label: Text("Actions",style: TextStyle(fontWeight: FontWeight.bold),)),
                           ],
-                          rows: controller.doctorList.map((doctor) {
+                          rows: controller.doctorList.asMap().entries.map((entry) {
+                            int index = entry.key + 1;
+                            var doctor = entry.value;
                             return DataRow(cells: [
                               DataCell(Text(doctor.id)),
+                              DataCell(Text(doctor.doctorId.toString())),
                               DataCell(Text(doctor.fullName)),
                               DataCell(Text(doctor.isActive ? "Active" : "Not Active")),
                               DataCell(Text(doctor.hospitalClinicName)),

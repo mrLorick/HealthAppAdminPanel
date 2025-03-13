@@ -4,34 +4,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../models/doctor_list_model.dart';
+import '../models/patient_list_model.dart';
 
-class DoctorController extends GetxController  {
-  final RxList<DoctorListModel> doctorList = <DoctorListModel>[].obs;
+class PatientController extends GetxController  {
+  final RxList<PatientListModel> patientList = <PatientListModel>[].obs;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// get user list
-  void getAllDoctorList() {
+  void getAllPatientList() {
     try {
 
       // Utils.showLoader();
 
       /// Use snapshots() to listen to real-time updates
-      _firestore.collection('doctors_list').snapshots().listen((QuerySnapshot querySnapshot) {
+      _firestore.collection('patient').snapshots().listen((QuerySnapshot querySnapshot) {
 
         /// Map the Firestore documents to your UserModel
-        List<DoctorListModel> list = querySnapshot.docs.map((doc) {
-          return DoctorListModel.fromJson({
+        List<PatientListModel> list = querySnapshot.docs.map((doc) {
+          return PatientListModel.fromJson({
             ...doc.data() as Map<String, dynamic>,
-            'id': doc.id,
+            'id': doc.id.toString(),
           });
         }).toList();
 
-        list.sort((a, b) => a.doctorId.compareTo(b.doctorId));
+        // list.sort((a, b) => a.medicineId.compareTo(b.medicineId));
 
-        doctorList.clear();
-        doctorList.addAll(list);
-        doctorList.refresh();
+        patientList.clear();
+        patientList.addAll(list);
+        patientList.refresh();
 
         // Utils.hideLoader();
       });

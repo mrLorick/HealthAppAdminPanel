@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../locale_storage/shared_preference_helper.dart';
-import '../main.dart';
+import '../pages/admin_main_page.dart';
 import '../utils/app_utils.dart';
 
 class LoginController extends GetxController {
