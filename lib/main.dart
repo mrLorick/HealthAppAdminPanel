@@ -1,23 +1,46 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_pannel/menu_tabs/doctor_list_page.dart';
+import 'package:health_app_admin_pannel/pages/login_page.dart';
+import 'package:health_app_admin_pannel/services/firebase_options.dart';
 import 'package:health_app_admin_pannel/widgets/menu_item.dart';
 
 import 'controllers/sidebar_controller.dart';
+import 'locale_storage/shared_preference_helper.dart';
 import 'menu_tabs/dashboard_page.dart';
-import 'menu_tabs/doctor_list_page.dart';
 import 'menu_tabs/patient_list_page.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await SharedPreferenceHelper.init();
+  runApp(const MyApp());
 }
 
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
-class MyApp extends StatelessWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late SharedPreferenceHelper storage;
+
+  @override
+  void initState() {
+    storage = SharedPreferenceHelper();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AdminPanel(),
+      home: storage.getIsUserAdminRole() == true ? AdminPanel() : AdminLoginPage(),
     );
   }
 }
@@ -29,7 +52,7 @@ class AdminPanel extends StatelessWidget {
   final List<Widget> pages = [
     DashboardScreen(),
     PatientListScreen(),
-    DoctorListScreen(),
+    DoctorListPage(),
   ];
 
 
