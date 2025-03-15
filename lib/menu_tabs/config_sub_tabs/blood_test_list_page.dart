@@ -35,7 +35,7 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                   width: MediaQuery.of(context).size.width * 0.2,
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Search Medicine...",
+                      hintText: "Search Blood Test...",
                       prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8)),

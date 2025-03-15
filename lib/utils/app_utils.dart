@@ -23,7 +23,9 @@ class Utils {
 
   static Map<String, double> tableColumnWidths(double totalWidth) {
     return {
-      "column5": totalWidth * 0.5,
+      "column5": totalWidth * 0.05,
+      "column7": totalWidth * 0.07,
+      "column8": totalWidth * 0.08,
       "column10": totalWidth * 0.10,
       "column15": totalWidth * 0.15,
       "column20": totalWidth * 0.20,
