@@ -63,7 +63,7 @@ class _PatientListPageState extends State<PatientListPage> {
                           height: 50,
                           child: Row(
                             children: [
-                              _buildTableHeader("Sr No.", columnWidths["column8"]!),
+                              _buildTableHeader("Sr No.", columnWidths["column5"]!),
                               // _buildTableHeader("ID", column2Width),
                               _buildTableHeader("Patient Id", columnWidths["column8"]!),
                               _buildTableHeader("Patient Name", columnWidths["column20"]!),
@@ -88,7 +88,7 @@ class _PatientListPageState extends State<PatientListPage> {
                                 var doctor = entry.value;
                                 return Row(
                                   children: [
-                                    _buildTableCell(index.toString(), columnWidths["column8"]!),
+                                    _buildTableCell(index.toString(), columnWidths["column5"]!),
                                     // _buildTableCell(doctor.id, column2Width),
                                     _buildTableCell(index.toString(), columnWidths["column8"]!),
                                     _buildTableCell("${doctor.firstName} ${doctor.lastName}", columnWidths["column20"]!),
