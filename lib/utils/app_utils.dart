@@ -1,6 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 // import 'package:lottie/lottie.dart';
 import 'app_helpers.dart';
@@ -18,6 +19,22 @@ class Utils {
     } else {
       return true;
     }
+  }
+
+  static Map<String, double> tableColumnWidths(double totalWidth) {
+    return {
+      "column5": totalWidth * 0.5,
+      "column10": totalWidth * 0.10,
+      "column15": totalWidth * 0.15,
+      "column20": totalWidth * 0.20,
+      "column25": totalWidth * 0.25,
+      "column30": totalWidth * 0.30,
+      "column35": totalWidth * 0.35,
+      "column40": totalWidth * 0.40,
+      "column45": totalWidth * 0.45,
+      "column50": totalWidth * 0.50,
+      "column60": totalWidth * 0.60,
+    };
   }
 
   static String extractPatientName(String text) {

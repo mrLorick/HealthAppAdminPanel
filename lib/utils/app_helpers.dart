@@ -24,6 +24,8 @@ double safeAreaHeight(BuildContext context) {
       15;
 }
 
+
+
 Widget dividerVirtical({
   double height = 25,
   double width = 1,

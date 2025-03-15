@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_app_admin_panel/controllers/symptoms_controller.dart';
 import 'package:health_app_admin_panel/utils/app_helpers.dart';
 import 'package:health_app_admin_panel/utils/app_utils.dart';
 
-import '../../controllers/blood_test_controller.dart';
-
-class BloodTestListPage extends StatefulWidget {
-  const BloodTestListPage({super.key});
+class SymptomsListPage extends StatefulWidget {
+  const SymptomsListPage({super.key});
 
   @override
-  State<BloodTestListPage> createState() => _BloodTestListPageState();
+  State<SymptomsListPage> createState() => _SymptomsListPageState();
 }
 
-class _BloodTestListPageState extends State<BloodTestListPage> {
-  final BloodTestController controller = Get.put(BloodTestController());
+class _SymptomsListPageState extends State<SymptomsListPage> {
+  final SymptomsController controller = Get.put(SymptomsController());
 
   @override
   void initState() {
-    controller.getAllBloodTestList();
+    controller.getAllSymptomsTestList();
     super.initState();
   }
 
@@ -35,7 +34,7 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                   width: MediaQuery.of(context).size.width * 0.2,
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Search Medicine...",
+                      hintText: "Search Symptoms...",
                       prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8)),
@@ -44,7 +43,7 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                 ),
                 xWidth(10),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.15,
                   child: ElevatedButton(
                     onPressed: controller.isLoading.value ? null : controller.addMedicine,
                     style: ElevatedButton.styleFrom(
@@ -54,7 +53,7 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                     ),
                     child: controller.isLoading.value
                         ? const CircularProgressIndicator(color: Colors.white)
-                        : const Text("Add Blood Test", style: TextStyle(fontSize: 14,color: Colors.white)),
+                        : const Text("Add Symptoms", style: TextStyle(fontSize: 14,color: Colors.white)),
                   ),
                 )
               ],
@@ -80,8 +79,8 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                             children: [
                               _buildTableHeader("Sr No.", columnWidths["column10"]!),
                               // _buildTableHeader("ID", column2Width),
-                              _buildTableHeader("Blood Id", columnWidths["column10"]!),
-                              _buildTableHeader("Blood Name", columnWidths["column40"]!),
+                              _buildTableHeader("Symptoms Id", columnWidths["column10"]!),
+                              _buildTableHeader("Symptoms Name", columnWidths["column40"]!),
                               _buildTableHeader("Status", columnWidths["column20"]!),
                               _buildTableHeader("Actions", columnWidths["column10"]!),
                               _buildTableHeader("Delete", columnWidths["column10"]!),
@@ -94,14 +93,14 @@ class _BloodTestListPageState extends State<BloodTestListPage> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Obx(() => Column(
-                              children: controller.bloodTestList.asMap().entries.map((entry) {
+                              children: controller.symptomsList.asMap().entries.map((entry) {
                                 int index = entry.key + 1;
                                 var doctor = entry.value;
                                 return Row(
                                   children: [
                                     _buildTableCell(index.toString(), columnWidths["column10"]!),
                                     // _buildTableCell(doctor.id, column2Width),
-                                    _buildTableCell(doctor.bloodId.toString(), columnWidths["column10"]!),
+                                    _buildTableCell(doctor.symptomsId.toString(), columnWidths["column10"]!),
                                     _buildTableCell(doctor.name, columnWidths["column40"]!),
                                     _buildTableCell(doctor.isActive ? "Active" : "Not Active", columnWidths["column20"]!),
                                     _buildTableCell("Edit", columnWidths["column10"]!, isButton: true),

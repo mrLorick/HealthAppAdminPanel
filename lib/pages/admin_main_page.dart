@@ -4,10 +4,13 @@ import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 import '../controllers/sidebar_controller.dart';
 import '../menu_tabs/config_sub_tabs/blood_test_list_page.dart';
+import '../menu_tabs/config_sub_tabs/diagnosis_list_page.dart';
 import '../menu_tabs/config_sub_tabs/medicines_list_page.dart';
+import '../menu_tabs/config_sub_tabs/symptoms_list_page.dart';
 import '../menu_tabs/dashboard_page.dart';
 import '../menu_tabs/doctor_list_page.dart';
 import '../menu_tabs/patient_list_page.dart';
+import '../menu_tabs/setting_page.dart';
 import '../widgets/menu_item.dart';
 
 
@@ -19,16 +22,16 @@ class AdminPanel extends StatelessWidget {
     const DashboardScreen(),   // 0
     const PatientListPage(),   // 1
     const DoctorListPage(),    // 2
-    const DoctorListPage(),        // 30
+    const DoctorListPage(),    // 30
 
 
 
     const MedicinesListPage(),
-    BloodTestListPage(),     // 31
-    DoctorListPage(),      // 32
-    DoctorListPage(),
+    const BloodTestListPage(),     // 31
+    const SymptomsListPage(),      // 32
+    const DiagnosisListPage(),
     // 33
-    DoctorListPage(),     // 33
+    const SettingPage(),     // 33
   ];
 
   /// **Page Titles**

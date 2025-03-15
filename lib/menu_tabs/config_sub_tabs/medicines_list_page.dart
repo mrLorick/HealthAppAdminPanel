@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:health_app_admin_panel/utils/app_helpers.dart';
 
 import '../../controllers/medicines_controller.dart';
+import '../../utils/app_utils.dart';
 
 class MedicinesListPage extends StatefulWidget {
   const MedicinesListPage({super.key});
@@ -62,14 +63,8 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
             Expanded(
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  double totalWidth = constraints
-                      .maxWidth; // Get available width
-                  double column1Width = totalWidth * 0.10; // 10% width
-                  double column2Width = totalWidth * 0.20; // 20% width
-                  double column3Width = totalWidth * 0.15; // 25% width
-                  double column4Width = totalWidth * 0.30; // 15% width
-                  double column5Width = totalWidth * 0.10; // 30% width
-                  double column6Width = totalWidth * 0.15; // 30% width
+                  double totalWidth = constraints.maxWidth;
+                  Map<String, double> columnWidths = Utils.tableColumnWidths(totalWidth);
 
                   return SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -83,12 +78,13 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
                           height: 50,
                           child: Row(
                             children: [
-                              _buildTableHeader("Sr No.", column1Width),
-                              _buildTableHeader("ID", column2Width),
-                              _buildTableHeader("Medicine Id", column3Width),
-                              _buildTableHeader("Medicine Name", column4Width),
-                              _buildTableHeader("Status", column5Width),
-                              _buildTableHeader("Actions", column6Width),
+                              _buildTableHeader("Sr No.", columnWidths["column10"]!),
+                              // _buildTableHeader("ID", column2Width),
+                              _buildTableHeader("Medicine Id", columnWidths["column10"]!),
+                              _buildTableHeader("Medicine Name", columnWidths["column40"]!),
+                              _buildTableHeader("Status", columnWidths["column20"]!),
+                              _buildTableHeader("Actions", columnWidths["column10"]!),
+                              _buildTableHeader("Delete", columnWidths["column10"]!),
                             ],
                           ),
                         ),
@@ -103,12 +99,13 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
                                 var doctor = entry.value;
                                 return Row(
                                   children: [
-                                    _buildTableCell(index.toString(), column1Width),
-                                    _buildTableCell(doctor.id, column2Width),
-                                    _buildTableCell(doctor.medicineId.toString(), column3Width),
-                                    _buildTableCell(doctor.name, column4Width),
-                                    _buildTableCell(doctor.isActive ? "Active" : "Not Active", column5Width),
-                                    _buildTableCell("View", column6Width, isButton: true),
+                                    _buildTableCell(index.toString(), columnWidths["column10"]!),
+                                    // _buildTableCell(doctor.id, column2Width),
+                                    _buildTableCell(doctor.medicineId.toString(), columnWidths["column10"]!),
+                                    _buildTableCell(doctor.name, columnWidths["column40"]!),
+                                    _buildTableCell(doctor.isActive ? "Active" : "Not Active", columnWidths["column20"]!),
+                                    _buildTableCell("Edit", columnWidths["column10"]!, isButton: true),
+                                    _buildTableCell("Delete", columnWidths["column10"]!, isButton: true),
                                   ],
                                 );
                               }).toList(),
@@ -147,7 +144,7 @@ class _MedicinesListPageState extends State<MedicinesListPage> {
       child: isButton
           ? TextButton(
         onPressed: () {},
-        child: const Text("View", style: TextStyle(color: Colors.blue),textAlign: TextAlign.start,),
+        child: Text(text, style: TextStyle(color: Colors.blue),textAlign: TextAlign.start,),
       )
           : Text(text),
     );
